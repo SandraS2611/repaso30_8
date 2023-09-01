@@ -1,19 +1,37 @@
-console.log("Hola Mundo");
+//const os = require('node:os')
 
-function hola (name) { console.log("Hola", name)}
+//console.log(os.arch());//x64
 
-hola("Sandra")
+//console.log(os.platform());//win32
 
-//no funcionan en Node
-//alert("Hola mundo cruel")
-//prompt("holis")
+//console.log(os.cpus());//model Intel ...
 
+//MODULOS NATIVOS 1 FORMA CON CALLBACKS
+// const { isUtf8 } = require('node:buffer')
+// const fs = require('node:fs')
 
-//IMPORT NODE necesita de REQUIRE 
-//DESESTRUCTURA
-const { suma, resta, mult, div } = require('./math')
+// fs.readFile('./test.txt', 'utf-8', (error, data) => {
+// if (error) {
+    // console.log("hubo un error");
+    // return
+// }
+// console.log(data);
+// })
 
-console.log(suma(1, 2));
-console.log(resta(3, 2));
-console.log(mult(3, 3));
-console.log(div(10, 2));
+// fs.writeFile('./test2.txt', "Test 2!!!!", (err) => {
+    // if (err) {
+        // console.log("Hubo un error");
+    // }
+
+// })
+
+//2 FORMA CON PROMISES
+const fs = require('node:fs/promises')
+
+fs.readFile('./test.txt', 'utf-8') 
+.then((data) => {
+    console.log(data);
+})
+
+fs.writeFile('./test2.txt', "Test 2!!!!")
+.catch(err => console.log(err))
